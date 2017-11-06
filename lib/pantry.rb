@@ -41,13 +41,11 @@ class Pantry
   def
 
   def what_can_i_make?
-    @cookbook.values.each do |value|
-      value.each do |key, value|
-        if stock_check(key) > value
-          
+    @cookbook.each do |key, value|
+      value.each do |ingredient, amount|
+        if stock_check(ingredient) > amount && ingredient =  @cookbook[key]
+          puts cookbook[key]
         end
-      end
     end
   end
-
 end
