@@ -1,11 +1,12 @@
 require './lib/recipe'
 require 'pry'
 class Pantry
-  attr_reader :stock, :shopping_list
+  attr_reader :stock, :shopping_list, :cookbook
 
   def initialize
     @stock = Hash.new(0)
     @shopping_list = {}
+    @cookbook = {}
   end
 
 
@@ -19,11 +20,10 @@ class Pantry
 
   def add_to_shopping_list(recipe)
     recipe.ingredients.each do |key, value|
-      @shopping_list[key] = value
-      if @recipe.keys.include?(recipe.ingredients)
-        @shopping_list[key] += value
+      if @shopping_list.keys.include?(key)
+        @shopping_list[key]+= value
       else
-      @shopping_list[key] = value
+        @shopping_list[key] = value
       end
     end
   end
@@ -33,5 +33,10 @@ class Pantry
       puts "#{key}: #{value}"
     end
   end
+
+  def add_to_cookbook(recipe)
+    @cookbook[recipe.name] = recipe.ingredients
+  end
+
 
 end

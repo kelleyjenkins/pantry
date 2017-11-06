@@ -54,6 +54,7 @@ class PantryTest < Minitest::Test
     r.add_ingredient("Flour", 20)
 
     assert_equal 20, pantry.add_to_shopping_list(r)["Cheese"]
+    assert_equal 2, pantry.shopping_list.count
   end
 
   def test_it_can_add_another_recipe_to_shopping_list
@@ -69,10 +70,10 @@ class PantryTest < Minitest::Test
     pantry.add_to_shopping_list(r2)
 
     assert_equal 25, pantry.shopping_list["Cheese"]
+    assert_equal 4, pantry.shopping_list.count
   end
 
   def test_it_can_print_to_console
-    skip
     pantry = Pantry.new
     r = Recipe.new("Cheese Pizza")
     r2 = Recipe.new("Spaghetti")
@@ -85,6 +86,31 @@ class PantryTest < Minitest::Test
     pantry.add_to_shopping_list(r2)
 
     assert pantry.print_shopping_list
+  end
+
+  def test_it_can_add_one_recipe_to_cookbook
+    pantry = Pantry.new
+    r1 = Recipe.new("Cheese Pizza")
+    r1.add_ingredient("Cheese", 20)
+    r1.add_ingredient("Flour", 20)
+    pantry.add_to_cookbook(r1)
+
+    assert_equal 1, pantry.cookbook.count
+  end
+
+  def test_it_can_add_another_recipe_to_cookbook
+    pantry = Pantry.new
+    r1 = Recipe.new("Cheese Pizza")
+    r2 = Recipe.new("Pickles")
+    r1.add_ingredient("Cheese", 20)
+    r1.add_ingredient("Flour", 20)
+    r2.add_ingredient("Brine", 10)
+    r2.add_ingredient("Cucumbers", 30)
+    pantry.add_to_cookbook(r1)
+    pantry.add_to_cookbook(r2)
+
+    assert_equal 10, pantry.cookbook["Pickles"]["Brine"]
+    assert_equal 2, pantry.cookbook.count
   end
 
 end
