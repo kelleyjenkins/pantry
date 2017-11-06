@@ -113,4 +113,9 @@ class PantryTest < Minitest::Test
     assert_equal 2, pantry.cookbook.count
   end
 
+  def test_it_can_suggest_what_to_make
+    
+    assert_equal ["Pickles", "Peanuts"], pantry.what_can_i_make?
+
+
 end

@@ -38,5 +38,16 @@ class Pantry
     @cookbook[recipe.name] = recipe.ingredients
   end
 
+  def what_can_i_make?
+    @cookbook.select do |recipe|
+      recipe.ingreidents.each do |ingredient|
+        ingredient.stock_check(ingredient)
+        
+      if recipe.ingredients.keys == @stock.keys && @stock[key] > @ingredients[key]
+      end
+    end
+
+
+
 
 end
