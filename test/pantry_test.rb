@@ -114,8 +114,7 @@ class PantryTest < Minitest::Test
   end
 
   def test_it_can_suggest_what_to_make
-    
+
     assert_equal ["Pickles", "Peanuts"], pantry.what_can_i_make?
-
-
+  end
 end
