@@ -1,19 +1,22 @@
 require 'pry'
 class Pantry
-  attr_reader :stock
+  attr_reader :stock, :quantity
 
   def initialize
     @stock = {}
-    @start_quantity = 0
+    @quantity = 0
   end
 
   def stock_check(item)
-    @stock[item] = @start_quantity
+    @stock[item] = quantity
   end
 
+
   def restock(item, quantity)
-    if @stock.keys.include?(item)
-      @stock[item] += quantity
+    binding.pry
+    if stock.keys.include?(item)
+    @stock[item] += quantity
+    binding.pry
     end
   end
 end
