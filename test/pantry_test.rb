@@ -62,11 +62,29 @@ class PantryTest < Minitest::Test
     r2 = Recipe.new("Spaghetti")
     r.add_ingredient("Cheese", 20)
     r.add_ingredient("Flour", 20)
-    r.add_ingredient("Spaghetti Noodles", 10)
-    r.add_ingredient("Marinara Sauce", 10)
-    r.add_ingredient("Cheese", 5)
+    r2.add_ingredient("Spaghetti Noodles", 10)
+    r2.add_ingredient("Marinara Sauce", 10)
+    r2.add_ingredient("Cheese", 5)
+    pantry.add_to_shopping_list(r)
+    pantry.add_to_shopping_list(r2)
 
-    assert_equal 25, pantry.add_to_shopping_list(r)["Cheese"]
+    assert_equal 25, pantry.shopping_list["Cheese"]
+  end
+
+  def test_it_can_print_to_console
+    skip
+    pantry = Pantry.new
+    r = Recipe.new("Cheese Pizza")
+    r2 = Recipe.new("Spaghetti")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+    r2.add_ingredient("Spaghetti Noodles", 10)
+    r2.add_ingredient("Marinara Sauce", 10)
+    r2.add_ingredient("Cheese", 5)
+    pantry.add_to_shopping_list(r)
+    pantry.add_to_shopping_list(r2)
+
+    assert pantry.print_shopping_list
   end
 
 end
