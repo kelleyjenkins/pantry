@@ -1,9 +1,11 @@
 require 'pry'
 class Pantry
-  attr_reader :stock, :quantity
+  attr_reader :stock, :shopping_list
 
   def initialize
     @stock = Hash.new(0)
+    @shopping_list = {}
+
   end
 
 
@@ -13,5 +15,9 @@ class Pantry
 
   def restock(item, quantity)
     @stock[item] += quantity
+  end
+
+  def add_to_shopping_list(recipe)
+    @shopping_list[recipe]   
   end
 end
