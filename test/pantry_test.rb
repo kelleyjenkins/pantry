@@ -53,6 +53,20 @@ class PantryTest < Minitest::Test
     r.add_ingredient("Cheese", 20)
     r.add_ingredient("Flour", 20)
 
-    assert_instance_of Hash , pantry.add_to_shopping_list(r)
+    assert_equal 20, pantry.add_to_shopping_list(r)["Cheese"]
   end
+
+  def test_it_can_add_another_recipe_to_shopping_list
+    pantry = Pantry.new
+    r = Recipe.new("Cheese Pizza")
+    r2 = Recipe.new("Spaghetti")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+    r.add_ingredient("Spaghetti Noodles", 10)
+    r.add_ingredient("Marinara Sauce", 10)
+    r.add_ingredient("Cheese", 5)
+
+    assert_equal 25, pantry.add_to_shopping_list(r)["Cheese"]
+  end
+
 end
